@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.lushtechnology.zpass">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -16,8 +18,7 @@
         <service
             android:name="com.lushtechnology.zpass.XRPAccountService"
             android:enabled="true"
-            android:exported="true"
-            android:process=":remote">
+            android:exported="true">
         </service>
 
         <activity
