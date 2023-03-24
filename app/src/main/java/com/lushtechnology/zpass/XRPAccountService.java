@@ -10,7 +10,6 @@ public class XRPAccountService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        //TODO do something useful
         return Service.START_STICKY;
     }
 
