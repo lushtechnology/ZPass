@@ -1,4 +1,4 @@
-package com.lushtechnology.zpass;
+package com.lushtechnology.zpass.xrp;
 
 /*import org.xrpl.xrpl4j.client.XrplClient;
 import org.xrpl.xrpl4j.crypto.keys.Base58EncodedSecret;

@@ -1,10 +1,13 @@
-package com.lushtechnology.zpass;
+package com.lushtechnology.zpass.xrp;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -12,7 +15,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class XrpHttpWrapper {
+public class XrpHttpWrapper  {
 
     private static final MediaType JSON
             = MediaType.get("application/json; charset=utf-8");
@@ -45,9 +48,12 @@ public class XrpHttpWrapper {
                     .post(body)
                     .build();
             try (Response response = client.newCall(request).execute()) {
-                //return response.body().string();
-
-                return 99;
+                String res = response.body().string();
+                ObjectMapper reader = new ObjectMapper();
+                JsonNode rootResponse = reader.readTree(res);
+                JsonNode account_data = rootResponse.path("result").path("account_data");
+                long value = account_data.get("Balance").asLong();
+                return value;
             }
         } catch(IOException iox) {
             iox.printStackTrace();
