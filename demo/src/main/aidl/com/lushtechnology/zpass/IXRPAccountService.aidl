@@ -11,5 +11,5 @@ interface IXRPAccountService {
     void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat,
             double aDouble, String aString);
 
-    double getAccountValue();
+    long getAccountValue();
 }

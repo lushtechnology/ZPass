@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         if (!isBound) return;
 
         try {
-            double amount = xrpService.getAccountValue();
+            long amount = xrpService.getAccountValue();
             Toast.makeText(getApplicationContext(), "Account value is " + amount,
                     Toast.LENGTH_SHORT).show();
         } catch (RemoteException e) {

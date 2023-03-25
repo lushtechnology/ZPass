@@ -63,5 +63,12 @@ public class MainActivity extends AppCompatActivity {
                         tab.setText(title);
                     }
                 }).attach();
+
+        Intent intent = new Intent();
+        intent.setClassName(XRPAccountService.class.getPackage().getName(),
+                XRPAccountService.class.getName());
+        intent.putExtra("address", MainActivity.ADDRESS);
+        intent.putExtra("seed", MainActivity.SEED);
+        startService(intent);
     }
 }
