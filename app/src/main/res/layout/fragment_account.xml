@@ -50,7 +50,7 @@
         android:id="@+id/configure"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_columnSpan="2"
+        android:layout_gravity="center_horizontal"
         android:text="Configure Wallet" />
 
 </LinearLayout>
