@@ -20,7 +20,7 @@
             android:layout_weight="1"
             android:autofillHints=""
             android:ems="10"
-            android:hint="Foreign Address"
+            android:hint="Receiver Address"
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 

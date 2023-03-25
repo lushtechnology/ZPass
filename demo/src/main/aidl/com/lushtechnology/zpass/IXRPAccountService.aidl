@@ -13,5 +13,5 @@ interface IXRPAccountService {
 
     String getAccountAddress();
     long getAccountValue();
-    void pay(String foreignAdress, long amount);
+    void pay(String receiverAdress, long amount);
 }

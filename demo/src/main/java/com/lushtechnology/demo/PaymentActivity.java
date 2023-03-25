@@ -48,6 +48,7 @@ public class PaymentActivity extends AppCompatActivity {
                     return;
                 }
 
+                Toast.makeText(getApplicationContext(), "Done", Toast.LENGTH_LONG).show();
                 finish();
             }
         });

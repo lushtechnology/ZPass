@@ -4,6 +4,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
+import com.lushtechnology.zpass.IXRPAccountService;
 import com.lushtechnology.zpass.xrp.XrpHttpWrapper;
 
 public class XRPAccountService extends Service {
@@ -36,8 +37,8 @@ public class XRPAccountService extends Service {
             return address;
         }
 
-        public void pay(String foreignAdress, long amount) {
-            // TODO: implement
+        public void pay(String receiverAdress, long amount) {
+            wrapper.pay(seed, receiverAdress, amount);
         }
 
 
