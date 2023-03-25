@@ -19,6 +19,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.xrpl.xrpl4j.model.transactions.XrpCurrencyAmount;
+
+import java.math.BigDecimal;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link AccountFragment#newInstance} factory method to
@@ -113,7 +117,7 @@ public class AccountFragment extends Fragment {
                     try {
                         TextView balanceView = getView().findViewById(R.id.balance);
                         long drops = xrpService.getAccountValue();
-                        double xrp = 1.0 * drops / 1000000f;
+                        BigDecimal xrp = XrpCurrencyAmount.ofDrops(drops).toXrp();
                         balanceView.setText("" + xrp);
                     } catch (RemoteException rex) {
                         rex.printStackTrace();

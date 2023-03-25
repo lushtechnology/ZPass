@@ -27,6 +27,8 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.xrpl.xrpl4j.model.transactions.XrpCurrencyAmount;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
@@ -66,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             String address = xrpService.getAccountAddress();
             long amountInDrops = xrpService.getAccountValue();
 
-            Double amountInXRP = amountInDrops / 1000000.0;
+            Double amountInXRP = XrpCurrencyAmount.ofDrops(amountInDrops).toXrp().doubleValue();
 
             TextView editAddress =  this.findViewById(R.id.txtAddress);
             TextView editAmount =  this.findViewById(R.id.txtAmountInXRP);

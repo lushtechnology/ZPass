@@ -17,6 +17,10 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 import com.lushtechnology.zpass.IXRPAccountService;
 
+import org.xrpl.xrpl4j.model.transactions.XrpCurrencyAmount;
+
+import java.math.BigDecimal;
+
 public class PaymentActivity extends AppCompatActivity {
 
     @Override
@@ -34,8 +38,8 @@ public class PaymentActivity extends AppCompatActivity {
                 TextInputEditText txtAmount = findViewById(R.id.edit_amountInXRP);
 
                 String foreignAddress = txtAddress.getText().toString();
-                double amount = Double.parseDouble(txtAmount.getText().toString());
-                long amountIndrops = (long)amount * 1000000;
+                Double amount = Double.parseDouble(txtAmount.getText().toString());
+                long amountIndrops = XrpCurrencyAmount.ofXrp(new BigDecimal(amount)).value().longValue();
 
                 try {
                     xrpService.pay(foreignAddress, amountIndrops);
