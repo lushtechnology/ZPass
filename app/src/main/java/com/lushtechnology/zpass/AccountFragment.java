@@ -99,8 +99,9 @@ public class AccountFragment extends Fragment {
 
                     try {
                         TextView balanceView = getView().findViewById(R.id.balance);
-                        long balance = xrpService.getAccountValue();
-                        balanceView.setText("" + balance);
+                        long drops = xrpService.getAccountValue();
+                        double xrp = 1.0 * drops / 1000000f;
+                        balanceView.setText("" + xrp);
                     } catch (RemoteException rex) {
                         rex.printStackTrace();
                     }
