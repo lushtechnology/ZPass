@@ -16,6 +16,7 @@ import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 /**
@@ -80,6 +81,18 @@ public class AccountFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        Button configure = view.findViewById(R.id.configure);
+        configure.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                configureWallet();
+            }
+        });
+    }
+
+    private void configureWallet() {
+        Intent intent = new Intent(getActivity(), ConfigureWalletActivity.class);
+        startActivity(intent);
     }
 
     @Override

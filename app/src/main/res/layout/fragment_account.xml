@@ -22,4 +22,13 @@
         tools:layout_gravity="right"
 
         android:text="0.0" />
+
+    <Button
+        android:id="@+id/configure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_columnSpan="2"
+        android:layout_row="1"
+        android:text="Configure Wallet" />
+
 </GridLayout>

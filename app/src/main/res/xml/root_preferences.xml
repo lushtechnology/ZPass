@@ -1,0 +1,19 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/messages_header">
+
+        <EditTextPreference
+            app:key="address"
+            app:title="Address"
+            app:defaultValue="r4nucSPkeHNo6XNapFwPCpJdYX9XiJB7je"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            app:key="seed"
+            app:title="Secret"
+            app:defaultValue="sEdV5bYRmQS22UsGMfXy8TPimxokno5"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

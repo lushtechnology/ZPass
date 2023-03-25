@@ -2,12 +2,14 @@ package com.lushtechnology.zpass;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
@@ -32,8 +34,8 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String ADDRESS = "r4nucSPkeHNo6XNapFwPCpJdYX9XiJB7je";
-    public static final String SEED = "sEdV5bYRmQS22UsGMfXy8TPimxokno5";
+    public static String ADDRESS;
+    public static String SEED;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,12 @@ public class MainActivity extends AppCompatActivity {
                         tab.setText(title);
                     }
                 }).attach();
+
+        PreferenceManager.setDefaultValues(this, R.xml.root_preferences, false);
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        ADDRESS = prefs.getString("address", "");
+        SEED = prefs.getString("seed", "");
 
         Intent intent = new Intent();
         intent.setClassName(XRPAccountService.class.getPackage().getName(),

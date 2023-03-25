@@ -14,19 +14,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ZPass"
         tools:targetApi="31">
+        <activity
+            android:name=".ConfigureWalletActivity"
+            android:exported="false"
+            android:label="@string/title_activity_configure_wallet" />
 
         <service
-            android:name="com.lushtechnology.zpass.XRPAccountService"
+            android:name=".XRPAccountService"
             android:enabled="true"
             android:exported="true"
-            android:process=":my_process">
-        </service>
+            android:process=":my_process"></service>
 
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
