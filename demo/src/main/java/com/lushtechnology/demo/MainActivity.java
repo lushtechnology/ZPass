@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.os.StrictMode;
 import android.view.View;
 
 import androidx.navigation.NavController;
@@ -17,11 +18,13 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.lushtechnology.demo.databinding.ActivityMainBinding;
 import com.lushtechnology.zpass.IXRPAccountService;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,14 +41,11 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(binding.toolbar);
 
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendMessage();
+                Intent intent = new Intent(MainActivity.this, PaymentActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -55,36 +55,43 @@ public class MainActivity extends AppCompatActivity {
                 "com.lushtechnology.zpass.XRPAccountService");
 
         bindService(intent, myConnection, Context.BIND_AUTO_CREATE);
+
+        // TODO: fix long background process
+        StrictMode.ThreadPolicy gfgPolicy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(gfgPolicy);
     }
 
-    public void sendMessage()
-    {
-        if (!isBound) return;
-
+    public void loadWalletInformation() {
         try {
-            long amount = xrpService.getAccountValue();
-            Toast.makeText(getApplicationContext(), "Account value is " + amount,
-                    Toast.LENGTH_SHORT).show();
+            String address = xrpService.getAccountAddress();
+            long amountInDrops = xrpService.getAccountValue();
+
+            Double amountInXRP = amountInDrops / 1000000.0;
+
+            TextView editAddress =  this.findViewById(R.id.txtAddress);
+            TextView editAmount =  this.findViewById(R.id.txtAmountInXRP);
+
+            editAddress.setText(address);
+            editAmount.setText("" + amountInXRP);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
     }
 
     IXRPAccountService xrpService = null;
-    boolean isBound;
     private ServiceConnection myConnection =
             new ServiceConnection() {
                 public void onServiceConnected(
                         ComponentName className,
                         IBinder service) {
                     xrpService = IXRPAccountService.Stub.asInterface(service);
-                    isBound = true;
+
+                    loadWalletInformation();
                 }
 
                 public void onServiceDisconnected(
                         ComponentName className) {
                     xrpService = null;
-                    isBound = false;
                 }
             };
 
@@ -108,12 +115,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp();
     }
 }

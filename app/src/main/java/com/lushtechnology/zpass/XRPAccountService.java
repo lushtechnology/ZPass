@@ -32,6 +32,15 @@ public class XRPAccountService extends Service {
             return wrapper.getAccountInfo(address);
         }
 
+        public String getAccountAddress() {
+            return address;
+        }
+
+        public void pay(String foreignAdress, long amount) {
+            // TODO: implement
+        }
+
+
         public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat,
                                double aDouble, String aString) {
             // nothing here
