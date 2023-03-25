@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:useDefaultMargins="true"
+    android:alignmentMode="alignBounds"
+    android:columnCount="2"
+    tools:context=".AccountFragment">
+
+    <TextView
+        android:id="@+id/currency"
+        android:text="XRP"
+        android:layout_column="0"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/balance"
+        android:textAlignment="textEnd"
+        android:layout_column="1"
+        android:textSize="30sp"
+        tools:layout_gravity="right"
+
+        android:text="0.0" />
+</GridLayout>

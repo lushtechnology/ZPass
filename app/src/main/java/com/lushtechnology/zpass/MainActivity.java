@@ -1,6 +1,8 @@
 package com.lushtechnology.zpass;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -16,6 +18,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.io.IOException;
 
@@ -28,63 +32,36 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String ADDRESS = "r4nucSPkeHNo6XNapFwPCpJdYX9XiJB7je";
-    private static final String SEED = "sEdV5bYRmQS22UsGMfXy8TPimxokno5";
+    public static final String ADDRESS = "r4nucSPkeHNo6XNapFwPCpJdYX9XiJB7je";
+    public static final String SEED = "sEdV5bYRmQS22UsGMfXy8TPimxokno5";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // start xrp service
-        Intent intent = new Intent();
-        intent.setClassName("com.lushtechnology.zpass",
-                "com.lushtechnology.zpass.XRPAccountService");
-        intent.putExtra("address", ADDRESS);
-        intent.putExtra("seed", SEED);
-        //startService(intent);
-        bindService(intent, myConnection, Context.BIND_AUTO_CREATE);
+        // elements
+        TabLayout tabLayout = findViewById(R.id.tabs);
+        ViewPager2 viewPager2 = findViewById(R.id.pager);
 
-        testButton();
+        ViewPagerAdapter adapter = new ViewPagerAdapter(MainActivity.this);
+        viewPager2.setAdapter(adapter);
+
+        new TabLayoutMediator(tabLayout, viewPager2,
+                new TabLayoutMediator.TabConfigurationStrategy() {
+                    @Override
+                    public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                        String title = "";
+                        switch (position) {
+                            case 0:
+                                title = "Accounts";break;
+                            case 1:
+                                title = "Apps"; break;
+                            case 2:
+                                title = "NFTs"; break;
+                        }
+                        tab.setText(title);
+                    }
+                }).attach();
     }
-
-    private void testButton(){
-
-        StrictMode.ThreadPolicy gfgPolicy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(gfgPolicy);
-
-        Button button = (Button) findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Log.d("BUTTONS", "User tapped the Supabutton");
-
-                try {
-                    long x = exposedService.getAccountValue();
-                    Toast.makeText(getApplicationContext(), "account is " + x,
-                            Toast.LENGTH_SHORT).show();
-                } catch(RemoteException rex) {
-                    rex.printStackTrace();
-                }
-
-            }
-        });
-    }
-
-    IXRPAccountService exposedService = null;
-    boolean isBound;
-    final private ServiceConnection myConnection =
-            new ServiceConnection() {
-                public void onServiceConnected(
-                        ComponentName className,
-                        IBinder service) {
-                    exposedService = IXRPAccountService.Stub.asInterface(service);
-                    isBound = true;
-                }
-
-                public void onServiceDisconnected(
-                        ComponentName className) {
-                    exposedService = null;
-                    isBound = false;
-                }
-            };
 }
