@@ -69,13 +69,7 @@ public class AccountFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        Intent intent = new Intent();
-        intent.setClassName(XRPAccountService.class.getPackage().getName(),
-                XRPAccountService.class.getName());
-        intent.putExtra("address", MainActivity.ADDRESS);
-        intent.putExtra("seed", MainActivity.SEED);
-        //startService(intent);
-        getContext().bindService(intent, myConnection, Context.BIND_AUTO_CREATE);
+        Helper.initXrpService(getContext(), myConnection, null);
 
         // TODO: fix long background process
         StrictMode.ThreadPolicy gfgPolicy = new StrictMode.ThreadPolicy.Builder().permitAll().build();

@@ -38,7 +38,15 @@ public class XRPAccountService extends Service {
         }
 
         public void pay(String receiverAdress, long amount) {
-            wrapper.pay(seed, receiverAdress, amount);
+
+            // user approval dialog
+            Intent intent = new Intent(MainActivity.PAYMENT_CONFIRM_INTENT);
+            //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            intent.putExtra("Action", "Payment");
+            intent.putExtra("receiverAdress", receiverAdress);
+            intent.putExtra("amount", String.valueOf(amount));
+            startActivity(intent);
+            //wrapper.pay(seed, receiverAdress, amount);
         }
 
 
