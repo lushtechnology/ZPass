@@ -52,11 +52,11 @@ public class MainActivity extends AppCompatActivity {
                         String title = "";
                         switch (position) {
                             case 0:
-                                title = "Accounts";break;
-                            case 1:
                                 title = "Apps"; break;
-                            case 2:
+                            case 1:
                                 title = "NFTs"; break;
+                            case 2:
+                                title = "Accounts";break;
                         }
                         tab.setText(title);
                     }

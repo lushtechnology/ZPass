@@ -15,11 +15,11 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 0:
-                return new AccountFragment();
-            case 1:
                 return new AppsFragment();
-            case 2:
+            case 1:
                 return new NFTsFragment();
+            case 2:
+                return new AccountFragment();
         }
         return null;
     }
