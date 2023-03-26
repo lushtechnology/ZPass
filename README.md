@@ -1,7 +1,11 @@
-# ZPass
+# Overview
 ZPass is an Android app store for native web3 applications (e.g. [F-Droid](https://f-droid.org/en/packages/com.aurora.store/)). ZPass hosts verfied apps on its cloud repository where users can download and install on Android.
 
-ZPass hosts user wallet in a secure way and enable developers' access through APIs (.aidl format). This enable developers to charge customers for app downloads and usage.
+ZPass hosts user wallet in a secure way and enable developers' access through APIs (.aidl format). Developers can charge customers for app downloads and usage as a new revenue stream.
+
+Developers' apps will be host on cloud server (e.g [ZPass Store](https://github.com/lushtechnology/ZPass-store) after passing approval and KYC process. The app shows the list of available apps in Apps Tab. Then user is allowed to install the app locally and start using. Also, the app host the user wallet for payments (app purchase, service subscriptions and NFTs purchase etc..). Deverlopers will use the app APIs (IXRPAccountService.aidl) to implement various actions for customer wallet. 'Demo' module show an example of how to use this interface.
+
+Users can navigate to Account Tab to view wallet status and can configure the wallet (address and secret). Wallet is stored in Android Preference. We currently show only XRPs, other tokens will be enabled in release app.
 
 # Installation
 * Open this [ZPass app](https://raw.githubusercontent.com/lushtechnology/ZPass/main/app/release/app-release.apk) download link from your mobile.
