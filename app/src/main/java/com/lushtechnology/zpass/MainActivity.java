@@ -3,18 +3,23 @@ package com.lushtechnology.zpass;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.preference.PreferenceManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
@@ -63,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
                 }).attach();
 
         PreferenceManager.setDefaultValues(this, R.xml.root_preferences, false);
-
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         ADDRESS = prefs.getString("address", "");
         SEED = prefs.getString("seed", "");

@@ -4,12 +4,24 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.LifecycleRegistry;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.work.Constraints;
+import androidx.work.Data;
+import androidx.work.NetworkType;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkInfo;
+import androidx.work.WorkManager;
 
+import com.lushtechnology.zpass.store.DownloadWorker;
 import com.lushtechnology.zpass.store.StoreApp;
 
 import java.util.List;
@@ -45,9 +57,28 @@ public class StoreAppAdapter extends
         // Set item views based on your views and data model
         TextView textView = holder.nameTextView;
         textView.setText(app.getName());
-        Button button = holder.messageButton;
+        ImageView button = holder.downloadButton;
         //button.setText(app.isOnline() ? "Message" : "Offline");
         //button.setEnabled(app.isOnline());
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (listener != null) {
+                    listener.onItemClick(holder.getAbsoluteAdapterPosition());
+                }
+            }
+        });
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    private OnItemClickListener listener;
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 
     @Override
@@ -59,7 +90,7 @@ public class StoreAppAdapter extends
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
         public TextView nameTextView;
-        public Button messageButton;
+        public ImageView downloadButton;
 
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview
@@ -69,7 +100,7 @@ public class StoreAppAdapter extends
             super(itemView);
 
             nameTextView = (TextView) itemView.findViewById(R.id.info_text);
-            //messageButton = (Button) itemView.findViewById(R.id.message_button);
+            downloadButton = (ImageView) itemView.findViewById(R.id.download_button);
         }
     }
 }

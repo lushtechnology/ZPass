@@ -28,6 +28,7 @@
                 android:textStyle="bold" />
 
             <ImageView
+                android:id="@+id/download_button"
                 android:layout_width="30sp"
                 android:layout_height="30sp"
                 android:layout_alignParentTop="true"
