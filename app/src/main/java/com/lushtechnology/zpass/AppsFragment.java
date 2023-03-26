@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -30,6 +31,7 @@ import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkInfo;
 import androidx.work.WorkManager;
 
+import android.os.UserManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -188,6 +190,12 @@ public class AppsFragment extends Fragment
     private static final int REQUEST_INSTALL = 2;
 
     void installAPK(String filePath) {
+
+        UserManager userManager = (UserManager) getContext().getSystemService(Context.USER_SERVICE);
+        if (userManager.hasUserRestriction(UserManager.DISALLOW_INSTALL_UNKNOWN_SOURCES_GLOBALLY)) {
+            System.out.println("Disallow install globally");
+        }
+
         File apkFile = new File(filePath);
 
         if (apkFile.exists()) {
