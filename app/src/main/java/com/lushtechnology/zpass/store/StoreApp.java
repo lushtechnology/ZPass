@@ -28,7 +28,8 @@ public class StoreApp {
         ArrayList<StoreApp> apps = new ArrayList<StoreApp>();
 
         for (int i = 1; i <= num; i++) {
-            apps.add(new StoreApp("App " + i, null));
+            apps.add(new StoreApp("Foo App " + i,
+                    "https://raw.githubusercontent.com/lushtechnology/ZPass-store/main/apps/foo" + i + "-release.apk"));
         }
 
         return apps;

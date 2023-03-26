@@ -105,16 +105,8 @@ public class AppsFragment extends Fragment
         RecyclerView rvStoreApps = (RecyclerView) view.findViewById(R.id.rvStoreApps);
         progressBar = view.findViewById(R.id.progress_bar);
 
-        // Initialize contacts
-        final String base_url = "https://raw.githubusercontent.com/lushtechnology/ZPass-store/main/apps/";
-
-        apps = new ArrayList<>();
-        apps.add(new StoreApp("Demo Payment App", base_url + "demo-release.apk"));
-        apps.add(new StoreApp("Foo App 1", base_url + "foo1.apk"));
-        apps.add(new StoreApp("Foo App 2", base_url + "foo2.apk"));
-        apps.add(new StoreApp("Foo App 3", base_url + "foo3.apk"));
-        apps.add(new StoreApp("Foo App 4", base_url + "foo4.apk"));
-        apps.add(new StoreApp("Foo App 5", base_url + "foo5.apk"));
+        apps = StoreApp.createList(10);
+        apps.add(0, new StoreApp("Demo Payment App", "https://raw.githubusercontent.com/lushtechnology/ZPass/main/demo/release/demo-release.apk"));
 
         //StoreApp.createList(20);
         // Create adapter passing in the sample user data
