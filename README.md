@@ -1,3 +1,4 @@
+[![Watch the video](docs/screen-01.jpeg)](docs/demo-video.mp4)
 # Overview
 ZPass is an Android app store for native web3 applications (e.g. [F-Droid](https://f-droid.org/en/packages/com.aurora.store/)). ZPass hosts verfied apps on its cloud repository where users can download and install on Android.
 
