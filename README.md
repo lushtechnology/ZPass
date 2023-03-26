@@ -4,6 +4,11 @@ ZPass is an Android app store for native web3 applications (e.g. [F-Droid](https
 ZPass hosts user wallet in a secure way and enable developers' access through APIs (.aidl format). This enable developers to charge customers for app downloads and usage.
 
 # Installation
+* Open this [ZPass app](https://raw.githubusercontent.com/lushtechnology/ZPass/main/app/release/app-release.apk) download link from your mobile.
+* 
+
+or
+
 * Install Android Studio and Sdk depending on your OS [Download link](https://developer.android.com/studio?gclid=Cj0KCQjw8e-gBhD0ARIsAJiDsaWNDdL3DzvdKx9O5QL4_bWR2k5O5rvJpIlUXccYv8JCEm_d6SWjzWcaAjMJEALw_wcB&gclsrc=aw.ds).
 * Download this repostiory using git.
 * Use Android Studio to run 'app'
