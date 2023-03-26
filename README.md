@@ -5,7 +5,7 @@ ZPass hosts user wallet in a secure way and enable developers' access through AP
 
 # Installation
 * Open this [ZPass app](https://raw.githubusercontent.com/lushtechnology/ZPass/main/app/release/app-release.apk) download link from your mobile.
-* 
+* Android doesn't support install apps from unknow sources by default, proceed anyway with installation.
 
 or
 
