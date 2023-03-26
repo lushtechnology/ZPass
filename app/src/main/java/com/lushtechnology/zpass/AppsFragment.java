@@ -3,10 +3,16 @@ package com.lushtechnology.zpass;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.lushtechnology.zpass.store.StoreApp;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +29,8 @@ public class AppsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    ArrayList<StoreApp> apps;
 
     public AppsFragment() {
         // Required empty public constructor
@@ -59,6 +67,19 @@ public class AppsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_apps, container, false);
+        View view = inflater.inflate(R.layout.fragment_apps, container, false);
+        // Lookup the recyclerview in activity layout
+        RecyclerView rvStoreApps = (RecyclerView) view.findViewById(R.id.rvStoreApps);
+
+        // Initialize contacts
+        apps = StoreApp.createList(20);
+        // Create adapter passing in the sample user data
+        StoreAppAdapter adapter = new StoreAppAdapter(apps);
+        // Attach the adapter to the recyclerview to populate items
+        rvStoreApps.setAdapter(adapter);
+        // Set layout manager to position the items
+        rvStoreApps.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+
+        return view;
     }
 }
