@@ -7,20 +7,26 @@ Developers' apps will be host on cloud server (e.g [ZPass Store](https://github.
 
 Users can navigate to Account Tab to view wallet status and can configure the wallet (address and secret). Wallet is stored in Android Preference. We currently show only XRPs, other tokens will be enabled in release app.
 
-![Apps Tab](docs/screen-01.jpeg)
-![Account](docs/screen-02.jpeg)
-![Wallet](docs/screen-03.jpeg)
-
 # Installation
+We recommend to run the app on a physical hardware for better viewing.
+### Github
 * Open this [ZPass app](https://raw.githubusercontent.com/lushtechnology/ZPass/main/app/release/app-release.apk) download link from your mobile.
 * Android doesn't support install apps from unknow sources by default, proceed anyway with installation.
-
-or
-
+### Android Studio
 * Install Android Studio and Sdk depending on your OS [Download link](https://developer.android.com/studio?gclid=Cj0KCQjw8e-gBhD0ARIsAJiDsaWNDdL3DzvdKx9O5QL4_bWR2k5O5rvJpIlUXccYv8JCEm_d6SWjzWcaAjMJEALw_wcB&gclsrc=aw.ds).
 * Download this repostiory using git.
 * Use Android Studio to run 'app'
 * For the purpose of prototype, we developed a 'demo' app to show how integration with developer's app works.
+
+> **Warning**
+> ZPass use now only XRP testnet (https://s.altnet.rippletest.net:51234/)
+
+# Demo
+Check [this video](https://raw.githubusercontent.com/lushtechnology/ZPass/main/docs/demo-video.mp4) for overview. Also, here are some screen shots.
+
+![Apps Tab](docs/screen-01.jpeg)
+![Account](docs/screen-02.jpeg)
+![Wallet](docs/screen-03.jpeg)
 
 # Limitations
 * Android doesn't enable instalation of unsigned apps. The user has to enable it manually, but in future this could be overcome by building a custom android release with preconfigured ZPass app store.
