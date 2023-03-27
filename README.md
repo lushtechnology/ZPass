@@ -1,4 +1,3 @@
-[![Watch the video](docs/screen-01.jpeg)](docs/demo-video.mp4)
 # Overview
 ZPass is an Android app store for native web3 applications (e.g. [F-Droid](https://f-droid.org/en/packages/com.aurora.store/)). ZPass hosts verfied apps on its cloud repository where users can download and install on Android.
 
@@ -7,6 +6,10 @@ ZPass hosts user wallet in a secure way and enable developers' access through AP
 Developers' apps will be host on cloud server (e.g [ZPass Store](https://github.com/lushtechnology/ZPass-store) after passing approval and KYC process. The app shows the list of available apps in Apps Tab. Then user is allowed to install the app locally and start using. Also, the app host the user wallet for payments (app purchase, service subscriptions and NFTs purchase etc..). Deverlopers will use the app APIs (IXRPAccountService.aidl) to implement various actions for customer wallet. 'Demo' module show an example of how to use this interface.
 
 Users can navigate to Account Tab to view wallet status and can configure the wallet (address and secret). Wallet is stored in Android Preference. We currently show only XRPs, other tokens will be enabled in release app.
+
+![Apps Tab](docs/screen-01.jpeg)
+![Account](docs/screen-02.jpeg)
+![Wallet](docs/screen-03.jpeg)
 
 # Installation
 * Open this [ZPass app](https://raw.githubusercontent.com/lushtechnology/ZPass/main/app/release/app-release.apk) download link from your mobile.
@@ -25,4 +28,4 @@ or
 
 # Known Issues
 * Some UX Views are slow and blocking for the purpose of quick prototyping.
-* XRP Payment has been develped, however xrpl4j-client (both 3.0.1 and 2.5.1 versions) package doesn't work on android. As work around we used HTTP-RPC, whcih doesn't enable all features [Stackoverflow](https://stackoverflow.com/questions/67919450/unable-to-instantiate-xrplclient-object-android-studio).
+* XRP Payment has been develped, however xrpl4j-client (both 3.0.1 and 2.5.1 versions) package doesn't work on android. As work around we used HTTP-RPC, which doesn't enable all features [Stackoverflow](https://stackoverflow.com/questions/67919450/unable-to-instantiate-xrplclient-object-android-studio).
