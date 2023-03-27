@@ -71,13 +71,6 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         ADDRESS = prefs.getString("address", "");
         SEED = prefs.getString("seed", "");
-
-        Intent intent = new Intent();
-        intent.setClassName(XRPAccountService.class.getPackage().getName(),
-                XRPAccountService.class.getName());
-        intent.putExtra("address", MainActivity.ADDRESS);
-        intent.putExtra("seed", MainActivity.SEED);
-        startService(intent);
     }
 
     @Override
